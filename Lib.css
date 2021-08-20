@@ -1,0 +1,106 @@
+@charset "ISO-8859-1";
+body  
+{  
+    background: url('img2.JPG');
+    margin: 0;  
+    padding: 20;  
+    font-family: 'Arial'; 
+     
+}  
+.login{  
+	    width: 300px;
+	    height:300px;  
+        overflow: hidden;
+        margin: auto;  
+        padding: 50px;  
+        background: #23463f;  
+        border-radius: 15px ; 
+        font-size:20px;
+                  
+}
+.Sign_up{  
+	    width: 400px;  
+        overflow: hidden;
+        align:center;  
+        margin: auto;  
+        
+        padding: 20px;  
+        background: #23463f;  
+        border-radius: 15px ; 
+        font-size:20px;
+                  
+}
+p{
+	color: red;  
+    font-size: 17px
+}
+  
+h2{  
+     background-color: #cccccc;
+     border:5px solid #277582;
+    text-align: center;  
+    color: #277582;  
+    padding: 20px; 
+   
+} 
+.input{
+	width:300px;
+	height:50px;
+}
+h3{
+    text-align: center;  
+    color: #277582;  
+   
+	
+} 
+label{  
+    color: #08ffd1;  
+    font-size: 17px;  
+}  
+#Uname,#Pass_r{  
+    width: 250px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 3px;  
+    padding-left: 8px;  
+}  
+#Pass,#Pass_r,#Email_id{  
+    width: 250px;  
+    height: 30px;  
+    border: none;  
+    border-radius: 3px;  
+    padding-left: 8px;  
+      
+}  
+#log{  
+    width: 100px;  
+    height: 30px;  
+    border: 1px solid black;  
+    border-radius: 17px;  
+    padding-left: 7px;  
+    color: red;
+    margin:left;
+    font-weight:200;
+    font-size:20px;  
+}
+#Submit,#Cancel{  
+    width: 100px;  
+    height: 30px; 
+    
+    border: 1px solid black;  
+    border-radius: 17px;  
+    padding-left: 15px;  
+    color: red;
+    margin:left;
+    font-weight:400;
+    font-size:20px;  
+}  
+  
+span{  
+    color: white;  
+    font-size: 17px;  
+}  
+a{  
+    float: right;  
+    color: #08ffd1;        
+}  
