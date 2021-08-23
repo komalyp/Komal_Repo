@@ -2,7 +2,64 @@
 <html>    
 <head>    
     <title>Sign_Up_Form</title>    
-    <link rel="stylesheet" type="text/css" href="Lib.css">    
+    <link rel="stylesheet" type="text/css" href="Lib.css">  
+    <script>
+    function test1()
+    {       var username = document.getElementById("Uname").value;
+            var password = document.getElementById("Pass").value;
+    		var email = document.getElementById("Email_id").value;
+    		var email_test = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+     
+            if((username == null || username == "")&& (password == null || password == "") && (email == null || email == ""))
+			{
+				window.alert("Please enter valid username Password and Email Address");
+				
+				return false;
+			}
+            if (username == null || username == "") 
+			{
+                window.alert("Please enter the username.");
+				username.focus();
+                return false;
+            }
+            if (password == null || password == "") 
+			{
+                window.alert("Please enter the password.");
+				password.focus();
+                return false;
+            }
+			if(password.length < 6 || password.length >= 8)
+       		{
+					window.alert("Password min length is 6 Max length is 8");
+					return false;
+			}
+   
+  			if(email == null || email == "")
+  			{
+					window.alert("Please Enter valid email id.");
+					return false;
+			}
+  			if(!email_test.test(email))
+  			{
+				window.alert("Enter valid email id.");
+				return false;
+		}	
+       		
+               window.alert('SignUp successful! Now you can login to Library Portal');
+     			document.getElementById("Uname").value="";
+				document.getElementById("Pass").value="";
+				document.getElementById("Email_id").value="";
+				 
+				
+   
+    }
+    function clearFunc()
+	{
+		document.getElementById("Uname").value="";
+		document.getElementById("Pass").value="";
+	}	
+    
+    </script>  
 </head>    
 <body> 
   
@@ -20,9 +77,19 @@
         <input type="text" id="Pass" name="Pass" placeholder="Password" required><br><br>
         <label for="Email_id"><b>Email_id</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label> 
         <input type="email" id="Email_id" name="Email_id" placeholder="Email_id" required><br><br>
+        
+        <label for="User"><b>Type Of User</b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</label>
+        <select id="User" >
+        
+  		<option value="Admin">Admin</option>
+  		<option value="Student" selected>Student </option>
+  		</select>
+  		<br></br>
+  		
        
-        <input type="button" name="Submit" id="Submit" value="Sign up">
-        <input type="button" name="Cancel" id="Cancel" value="Cancel">            
+        <input type="button" name="Submit" id="Submit" value="Sign up" onclick = "test1()" >
+        <a href="login.html">Login Now</a>
+        <input type="button" name="Cancel" id="Cancel" value="Cancel" onclick = 'clearFunc()'>            
        
         
       </form>     
