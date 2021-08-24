@@ -49,8 +49,10 @@ background: url('library.JFIF');}
   border: 1px solid #ccc;
   width: 70%;
   border-left: none;
-  height: 300px;
+  height: 320px;
+   background-color:#aaa;
 }
+
 </style>
 </head>
 <body>
@@ -59,7 +61,7 @@ background: url('library.JFIF');}
 <p>Click on the buttons inside the tabbed menu:</p>
 
 <div class="tab">
-  <button class="tablinks" onclick="Books(event, 'ADD BOOKS')" id="defaultOpen">ADD BOOKS</button>
+  <button class="tablinks" onclick="Books(event, 'ADD BOOKS')"id="defaultOpen" >ADD BOOKS</button>
   <button class="tablinks" onclick="Books(event, 'UPDATE BOOKS')">UPDATE BOOKS</button>
   <button class="tablinks" onclick="Books(event, 'DELETE BOOKS')">DELETE BOOKS</button>
   <button class="tablinks" onclick="Books(event, 'SEARCH BOOKS')">SEARCH BOOKS</button>
@@ -73,24 +75,29 @@ background: url('library.JFIF');}
   <td><label for="Book_Id" >Book_Id:</label> </td>
   <td><input type="number" id="Book_Id" name="Book_Id" placeholder="Book_Id" required></td>
   </tr>
+  <tr></tr>
   <tr>
   <td><label for="Book_ISBN" >Book_ISBN:</label></td>  
   <td><input type="text" id="Book_ISBN" name="Book_ISBN" placeholder="Book_ISBN" required></td>
   </tr>
+  <tr></tr>
   <tr>
   <td><label for="Book_Name" >Book_Name:</label></td>  
   <td><input type="text" id="Book_Name" name="Book_Name" placeholder="Book_Name" required></td>
   </tr>
+  <tr></tr>
   <tr>
   <td><label for="Book_Author" >Book_Author:</label></td>  
   <td><input type="text" id="Book_Author" name="Book_Author" placeholder="Book_Author" required></td>
   </tr>
+  <tr></tr>
   <tr>
   <td><label for="Book_Price" >Book_Price:</label></td>  
-  <td><input type="number" id="Book_Price" name="Book_Price" placeholder="Book_Price" required></td>
+  <td><input type="number" id="Book_Price" name="Book_Price" placeholder="0.00" required></td>
   </tr>
+  <tr></tr>
  </table>
-  <h3><input type="button" name="ADD BOOK" id="ADD_BOOK" value="ADD_BOOK" ></h3>  "   
+  <h3><input type="button" name="ADD BOOK" id="ADD_BOOK" value="ADD_BOOK" onclick= "AddBooks()"></h3>  
         
   
 </div>
@@ -114,22 +121,70 @@ background: url('library.JFIF');}
 </div>
 
 <script>
-function Books(evt, cityName) {
+function Books(evt, AdminAct) {
    
 	
 	
-	var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(cityName).style.display = "block";
-  evt.currentTarget.className += " active";
+	var i, tabcontent, tablinks,B_id,B_Name,B_ISBN,B_Auth,B_Price;
+  	tabcontent = document.getElementsByClassName("tabcontent");
+  	for (i = 0; i < tabcontent.length; i++) 
+  	{
+    	tabcontent[i].style.display = "none";
+  	}
+  	tablinks = document.getElementsByClassName("tablinks");
+  	//alert(tablinks);
+  	for (i = 0; i < tablinks.length; i++) 
+  	{
+    	tablinks[i].className = tablinks[i].className.replace(" active", "");
+  	}
+  	document.getElementById(AdminAct).style.display = "block";
+  	evt.currentTarget.className += " active";
+  
 }
+  function AddBooks()
+  {
+	  
+	 
+	  //var add = document.getElementsById("Add_BOOK").value;
+      
+
+ 	 var B_id = document.getElementById("Book_Id").value;
+ 	
+ 	 var B_Name = document.getElementById("Book_Name").value;
+ 	 var B_ISBN = document.getElementById("Book_ISBN").value;
+ 	 var B_Auth = document.getElementById("Book_Author").value;
+ 	 var B_Price = document.getElementById("Book_Price").value;
+ 	
+      
+	   
+    	 if(B_id == null || B_id == "")
+    	 {   window.alert("Please Enter Valid Book_Id");
+    	     B_id.focus();
+    	 	 return false;
+    	 }
+    	 if(B_ISBN == null || B_ISBN =="")
+    	 {   	window.alert("Please Enter Book_ISBN");
+    	 		B_ISBN.focus();
+    	 		return false;
+ 	 	  }	 
+    	 if(B_Name == null || B_Name =="")
+    	 {   	window.alert("Please Enter Book_Name");
+    	 		B_Name.focus();
+ 	 			return false;
+ 	 	  }	 
+       	 if(B_Auth == null || B_Auth =="")
+    	 {   	window.alert("Please Enter Book_Author_Name");
+    	 		B_Auth.focus();
+    	 		return false;
+ 	 	  }	 
+    	 if(B_Price == "" || B_Price <= 0)
+    	 {   	window.alert("Please Enter Book_Price");
+    	 		B_Price.focus();
+ 	 			return false;
+ 	 	  }	 
+         window.alert("Book Added Successfully");
+         
+  }
 
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("defaultOpen").click();
