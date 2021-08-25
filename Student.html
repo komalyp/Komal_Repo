@@ -57,21 +57,22 @@ background: url('library.JFIF');}
 </head>
 <body>
 
-<h2>ADMIN ACTIONS</h2>
+<h2>STUDENT ACTIONS</h2>
 <p>Click on the buttons inside the tabbed menu:</p>
 
 <div class="tab">
-  <button class="tablinks" onclick="Books(event, 'ADD BOOKS')"id="defaultOpen" >ADD BOOKS</button>
-  <button class="tablinks" onclick="Books(event, 'UPDATE BOOKS')">UPDATE BOOKS</button>
-  <button class="tablinks" onclick="Books(event, 'DELETE BOOKS')">DELETE BOOKS</button>
-  <button class="tablinks" onclick="Books(event, 'SEARCH BOOKS')">SEARCH BOOKS</button>
-  <button class="tablinks" onclick="Books(event, 'VIEW BOOKS')">VIEW BOOKS</button>
+  <button class="tablinks" onclick="Books(event, 'VIEW BOOKS')"id="defaultOpen">VIEW BOOKS</button>
+   <button class="tablinks" onclick="Books(event, 'SEARCH BOOKS')">SEARCH BOOKS</button>
+  <button class="tablinks" onclick="Books(event, 'ORDER BOOKS')" >ORDER BOOKS</button>
+  <button class="tablinks" onclick="Books(event, 'UPDATE BOOKS')">RETURN BOOKS</button>
+  <button class="tablinks" onclick="Books(event, 'DELETE BOOKS')">ISSUED BOOKS</button>
+  
 </div>
 
 
-<div id="ADD BOOKS" class="tabcontent">
-  <h3>ADD BOOK</h3>
-  <table id = "Add_Book">
+<div id="VIEW BOOKS" class="tabcontent">
+  <h3>VIEW BOOKS</h3>
+  <table id = "View_Book">
   <tr>
   <td><label for="Book_Id" >Book_Id:</label> </td>
   <td><input type="number" id="Book_Id" name="Book_Id" placeholder="Book_Id" required></td>
@@ -226,22 +227,7 @@ function Books(evt, AdminAct) {
     	 		B_Price.focus();
  	 			return false;
  	 	  }
-    	 /*--25-08-2021
-    	 Store Book_Details into Table for future use;
-    	/* if ($("#Add_Book tbody").length == 0) {
- 	        $("#Add_Book").append("<tbody></tbody>");
- 	    }
-
- 	    // Append product to the table
- 	    $("#Add_Book tbody").append("<tr>" +
- 	        "<td>" + $("#Book_id").val() + "</td>" +
- 	        "<td>" + $("#Book_Name").val() + "</td>" +
- 	        "<td>" + $("#Book_ISBN").val() + "</td>" +
- 	       "<td>" + $("#Book_Author").val() + "</td>" +
-	        "<td>" + $("#Book_Price").val() + "</td>" +
-	        "<td>" + $("#Book_Qty").val() + "</td>" +
-	        "</tr>");
-    	 */
+  
          window.alert("Book Added Successfully");
          //View_Books();
   }

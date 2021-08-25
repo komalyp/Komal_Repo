@@ -19,11 +19,7 @@
     				username.focus();
                     return false;
                 }
-    			if (username.length <= 5) {
-                        window.alert("Please enter the username of minimum size 5");
-        				username.focus();
-                        return false;
-                    }
+    			
                 if (password == null || password == "") {
                     window.alert("Please enter the password.");
     				password.focus();
@@ -43,7 +39,7 @@
     <h2>Library Management Portal</h2><br>    
     <div class="login"> 
        
-    <form id="login" method="post" action="login.php">    
+    <form id="login" method="post" action="Validate">    
          <h3>Welcome to Library</h3> 
         <label><b>Username     
         </b>    
