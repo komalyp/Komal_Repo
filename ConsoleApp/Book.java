@@ -11,7 +11,9 @@ public String bookName;
 public String bookISBN;
 public String authorName;
 public int bookQty;
-public int bookQtyCopy;
+public int bookQtyCopy;//for total books
+public int issuedQty;
+public float price;
 
 Scanner input = new Scanner(System.in);
 
@@ -29,7 +31,9 @@ public Book(){
     System.out.println("Enter Quantity of Books:");
     this.bookQty = input.nextInt();
     bookQtyCopy = this.bookQty;
-
+    System.out.println("Enter Price of Book:");
+    this.price = input.nextInt();
+    
 }
 
 }

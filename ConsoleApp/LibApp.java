@@ -18,8 +18,8 @@ public class LibApp
 		 System.out.println("********************Welcome to the Library Management System!********************");
 		 do 
 		 {
-			 System.out.println("              Please Select USER TYPE to Access Library Syetem:               ");
-			 System.out.println("              Enter 1 for ADMIN \n Enter 2 for USER  \n Enter 3 for Exit            ");
+			 System.out.println("              \nPlease Select USER TYPE to Access Library Syetem:               ");
+			 System.out.println("              \n Enter 1 for ADMIN \n Enter 2 for USER  \n Enter 3 for Exit            ");
 			 usertype = ip.nextInt();
 			 switch(usertype)
 			 {
@@ -73,10 +73,12 @@ public class LibApp
 					break;
 			 	case 2: 
 			 			System.out.println("You are in User Mode");
+			 			Student s = new Student();
+			 			ss1.login(s);
 			 			//user_Act();
 			 			int c1;
-			 			System.out.println("              *** WELCOME USER ***               ");
-			 			System.out.println("              *** You Can Access Library System ***               ");
+			 			System.out.println("              *** \nWELCOME USER ***               ");
+			 			System.out.println("              *** \nYou Can Access Library System ***\n               ");
 			 			int User_Ch;
 			 			do
 			 			{
@@ -108,7 +110,10 @@ public class LibApp
 			 							ss1.ReturnBook(ob);
 			 							break;
 			 					case 5:   	
-			 							System.out.println("Work under progress");
+			 						Student s01 = new Student();
+			 						ss1.login(s01);
+			 							System.out.println("User Reg is under work");
+			 							
 			 							break;
 			 					case 6: 
 			 							System.out.println("Thank You User!");

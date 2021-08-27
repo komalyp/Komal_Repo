@@ -2,6 +2,7 @@ package library;
 
 import java.util.Scanner;
 
+
 public class Books {
 
 Book theBooks[] = new Book[50];     // Array that stores 'book' Objects.
@@ -9,10 +10,10 @@ public static int count;    // Counter for No of book objects Added in Array.
 
 Scanner input = new Scanner(System.in);
 
-
+//for user
 public void dispMenu(){
 
-    System.out.println("----------------------------------------------------------------------------------------------------------");
+    System.out.println("----------------------------------------*****USER RIGHTS*****------------------------------------------------------------------");
     System.out.println("Enter 1 to VIEW BOOKS");
     System.out.println("Enter 2 to SEARCH BOOK");
     System.out.println("Enter 3 to ORDER BOOK");
@@ -23,10 +24,11 @@ public void dispMenu(){
     System.out.println("------------------------------------------------------------ ---------------------------------------------");
 
 }
+//for admin
  public void dispMenu_Admin()
  {
 
-    System.out.println("----------------------------------------*****ADMIN RIGHTS------------------------------------------------------------------");
+    System.out.println("----------------------------------------*****ADMIN RIGHTS*****------------------------------------------------------------------");
     System.out.println("Enter 1 to ADD Book");
     System.out.println("Enter 2 to UPDATE Book.");
     System.out.println("Enter 3 to DELETE Book.");
@@ -51,6 +53,7 @@ public int compareBookObjects(Book b1, Book b2){
     				System.out.println("Book of this Name and author Already Exists.");
     				return 0;
     				}
+    	    		
     }
     
     if (b1.sNo==b2.sNo){
@@ -87,38 +90,43 @@ public void addBook(Book b){
 public void deleteBook()
 {
 
-    System.out.println("\nDELETE BY SERIAL NUMBER");
+    System.out.println("\nDELETE BOOK BY SERIAL NUMBER");
 
     int sNo,k;
-    System.out.println("Enter Serial No of Book:");
+    System.out.println("Enter Serial No. of Book:");
     sNo = input.nextInt();
 
     int flag = 0;
     int k1=0;
-    System.out.println("S.No\t\tName\t\tAuthor\t\tAvailable Qty\t\tTotal Qty");
+    System.out.println("S.No\t\tName\t\tAuthor\t\tAvailable Qty\t\tPrice\t\t\tTotal Qty");
     for (int i=0; i<theBooks.length; i++)
     {
-    	if (sNo != theBooks[i].sNo)
+    	if (sNo == theBooks[i].sNo)
     	{
               	System.out.println(theBooks[i].sNo + "\t\t" + theBooks[i].bookName + "\t\t" + theBooks[i].authorName + "\t\t" + 
-                    theBooks[i].bookQtyCopy + "\t\t" + theBooks[i].bookQty);
+                    theBooks[i].bookQtyCopy + "\t\t\t\t\t" + theBooks[i].price + "\t\t\t\t"+ theBooks[i].bookQty);
               	for(int j=i; j<(count-1); j++)
               	{
-        		theBooks[j].sNo= theBooks[i+1].sNo;
-            	theBooks[j].bookName = theBooks[i+1].bookName;
-            	theBooks[j].authorName=theBooks[i+1].authorName;
-            	theBooks[j].bookQtyCopy = theBooks[i+1].bookQtyCopy;
-            	theBooks[j].bookQty= theBooks[i+1].bookQty;
+        		theBooks[j].sNo= theBooks[j+1].sNo;
+            	theBooks[j].bookName = theBooks[j+1].bookName;
+            	theBooks[j].authorName=theBooks[j+1].authorName;
+            	theBooks[j].bookQtyCopy = theBooks[j+1].bookQtyCopy;
+            	theBooks[j].bookQty= theBooks[j+1].bookQty;
+            	theBooks[j].price= theBooks[j+1].price;
             	}           
         	flag++;
-            return;
+        	break;
+        	
+           // return;
          }
+    	
     }
    if (flag == 0)
         System.out.println("No Book for Serial No " + sNo + " Found.");
    else
    {	count--;
 	   System.out.println("Book for Serial No " + sNo + " Deleted.");
+	   System.out.println("New List of available Books : " );
 	   ViewBooks();
    }
    
@@ -137,7 +145,7 @@ public void searchBybookName(){
         if (bookName.equalsIgnoreCase(theBooks[i].bookName)){
 
             System.out.println(theBooks[i].sNo + "\t\t" + theBooks[i].bookName + "\t\t" + theBooks[i].authorName + "\t\t" + 
-                theBooks[i].bookQtyCopy + "\t\t" + theBooks[i].bookQty);
+                theBooks[i].bookQtyCopy + "\t\t" + "\t\t\t"+theBooks[i].price +"\t\t\t"+ theBooks[i].bookQty);
             flag++;
         }
 
@@ -161,9 +169,9 @@ public void searchBySno(){
 
         if (sNo == theBooks[i].sNo){
 
-            System.out.println(theBooks[i].sNo + "\t\t" + theBooks[i].bookName + "\t\t" + theBooks[i].authorName + "\t\t" + 
-                theBooks[i].bookQtyCopy + "\t\t" + theBooks[i].bookQty);
-            flag++;
+        	System.out.println(theBooks[i].sNo + "\t\t" + theBooks[i].bookName + "\t\t" + theBooks[i].authorName + "\t\t" + 
+                    theBooks[i].bookQtyCopy + "\t\t" + "\t\t\t"+theBooks[i].price +"\t\t\t"+ theBooks[i].bookQty);
+                flag++;
             return;
 
         }
@@ -178,36 +186,79 @@ public void searchBySno(){
 public void ViewBooks(){
 
     System.out.println("\t\t\t\tSHOWING ALL BOOKS\n");
-    System.out.println("S.No\t\tName\t\tAuthor\t\tAvailable Qty\t\tTotal Qty");
+    System.out.println("S.No\t\tName\t\tAuthor\t\tAvailable Qty\t\t\tPrice\t\t\tTotal Qty");
     for (int i=0; i<count; i++){
 
-        System.out.println(theBooks[i].sNo + "\t\t" + theBooks[i].bookName + "\t\t" + theBooks[i].authorName + "\t\t" + 
-                theBooks[i].bookQtyCopy + "\t\t" + theBooks[i].bookQty);
-
+    	System.out.println(theBooks[i].sNo + "\t\t" + theBooks[i].bookName + "\t\t" + theBooks[i].authorName + "\t\t" + 
+                theBooks[i].bookQtyCopy + "\t\t" + "\t\t\t"+theBooks[i].price +"\t\t\t"+ theBooks[i].bookQty);
+            
 
     }
 
 }
 
-public void UpdateBook(){
+public void UpdateBook()//Updating Qty ,Price
+{
 
-    System.out.println("\t\t\t\tUPGRADE QUANTITY OF A BOOK\n");
-    System.out.println("Enter Serial No of Book");
-    int sNo = input.nextInt();
-    for (int i=0; i<count; i++){
-
-        if (sNo == theBooks[i].sNo){
-
+	 System.out.println("Enter Serial No of Book");
+	 int sNo = input.nextInt();
+	   
+	 System.out.println("\t\t\tUpdate Book for SR.NO" + sNo +"\n\n :1.Update Qty \t\t 2.Update Price \t\t\t\3.Update Qty and Price");
+	 int ch= input.nextInt();
+	 if(ch==1)
+	 {
+		System.out.println("\t\t\t\tUPGRADE QUANTITY OF A BOOK\n");
+		for (int i=0; i<count; i++)
+		{
+			if (sNo == theBooks[i].sNo)
+			{
             System.out.println("Enter No of Books to be Added:");
             int addingQty = input.nextInt();
             theBooks[i].bookQty += addingQty;
             theBooks[i].bookQtyCopy += addingQty;
             return;
+			}
+		}
 
-        }
+	}
+	 if(ch==2)
+	 {
+		 System.out.println("\t\t\t\tUPGRADE PRICE OF A BOOK\n");
+			for (int i=0; i<count; i++)
+			{
+				if (sNo == theBooks[i].sNo)
+				{
+	            System.out.println("Enter Price to be Added:");
+	            float cost = input.nextFloat();
+	            theBooks[i].price = cost;
+	           // theBooks[i].bookQtyCopy += addingQty;
+	            return;
+				}
+			}
 
-    }
 
+		 
+	 }
+	 if(ch==3)
+	 {
+		 System.out.println("\t\t\t\tUPGRADE QUANTITY OF A BOOK\n");
+			for (int i=0; i<count; i++)
+			{
+	 			if (sNo == theBooks[i].sNo)
+				{
+	            System.out.println("Enter No of Books to be Added:");
+	            int addingQty = input.nextInt();
+	            theBooks[i].bookQty += addingQty;
+	            theBooks[i].bookQtyCopy += addingQty;
+	            System.out.println("Enter Updated Price of Book:");
+	            float cost = input.nextFloat();
+	            theBooks[i].bookQty += addingQty;
+	            theBooks[i].bookQtyCopy += addingQty;
+	            theBooks[i].price =cost;
+	            return;
+				}
+			}
+	 }
 }
 
 public int isAvailable(int sNo){
@@ -238,9 +289,9 @@ public int isAvailable(int sNo){
 
 }
 
-public Book ReturnBook(){
+public Book issueBook(){
 
-    System.out.println("Enter Serial No of Book to be Checked Out.");
+    System.out.println("Enter Serial No of Book to be Issued");
     int sNo = input.nextInt();
 
     int bookIndex =isAvailable(sNo);
@@ -257,7 +308,7 @@ public Book ReturnBook(){
 
 }
 
-public void OrderBook(Book b){
+public void submitBook(Book b){
 
     for (int i=0; i<count; i++){
 

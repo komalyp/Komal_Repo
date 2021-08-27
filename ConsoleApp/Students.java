@@ -13,16 +13,15 @@ Student theStudents[] = new Student[50];
 
 public static int count = 0;
 
-public void addStudent(Student s){
+public void login(Student s){
 
     for (int i=0; i<count; i++){
 
         if(s.ID.equalsIgnoreCase(theStudents[i].ID)){
 
-            System.out.println("Student of Reg Num " + s.ID + " is Already Registered.");
+            System.out.println("Student of Roll_no " + s.ID + " is Already Registered.");
             return;
         }
-
     }
 
     if (count<=50){
@@ -70,15 +69,15 @@ public int isStudent(){
     return -1;
 
 }
-public void ReturnBook(Books book){
+public void OrderBook(Books book){
     int studentIndex =this.isStudent();
 
     if (studentIndex!=-1){
-        System.out.println("checking out");
+        System.out.println("Authenticated Student/USER! ");
 
-        book.ViewBooks();//jjjjjjjjjjjj
-        Book b = book.ReturnBook();
-        System.out.println("checking out");
+        book.ViewBooks();
+        Book b = book.issueBook();
+        System.out.println("Issue Book:");
         if (b!= null){
 
             if (theStudents[studentIndex].booksCount<=3){
@@ -101,7 +100,7 @@ public void ReturnBook(Books book){
 
 }
 
-public void OrderBook(Books book){
+public void ReturnBook(Books book){
 
     int studentIndex = this.isStudent();
     if (studentIndex != -1){
@@ -113,13 +112,13 @@ public void OrderBook(Books book){
                     s.borrowedBooks[i].authorName);
 
         }
-        System.out.println("Enter Serial Number of Book to be Checked In:");
+        System.out.println("Enter Serial Number of Book to be Return:");
         int sNo = input.nextInt();
         for (int i=0; i<s.booksCount; i++){
 
             if (sNo == s.borrowedBooks[i].sNo){
 
-                book.OrderBook(s.borrowedBooks[i]);
+                book.submitBook(s.borrowedBooks[i]);
                 s.borrowedBooks[i]=null;
                 return;
 
@@ -134,6 +133,4 @@ public void OrderBook(Books book){
 
 
 }
-
-
 }
