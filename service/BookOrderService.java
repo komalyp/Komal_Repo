@@ -1,6 +1,5 @@
 package librarymanagement.service;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -10,11 +9,8 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import librarymanagement.model.Book;
 import librarymanagement.model.BookOrder;
 import librarymanagement.repository.BookOrderRepository;
-
-import java.time.temporal.ChronoUnit;
 
 @Service
 @Transactional

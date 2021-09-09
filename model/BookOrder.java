@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -23,7 +22,7 @@ public class BookOrder {
 	private int orderid;
 	
 	 @ManyToOne
-		@JoinColumn(name = "emailid")//foreign key column 
+		@JoinColumn(name = "emailid")
 	private User emailid;
 	 
 	 @ManyToOne

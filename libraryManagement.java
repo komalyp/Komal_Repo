@@ -13,14 +13,9 @@ import librarymanagement.service.BookOrderService;
 import librarymanagement.service.BookService;
 //import librarymanagement.service.RoleService;
 import librarymanagement.service.UserService;
-
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
 import java.util.Scanner;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @SpringBootApplication
 public class libraryManagement implements CommandLineRunner {
@@ -159,12 +154,26 @@ public class libraryManagement implements CommandLineRunner {
 			                	System.out.println("Book with id " + idTobeDeleted + "is deleted successfully!");
 			                     break;                 
 			                case 4://Search Book
-			                	
+			                	System.out.println("Enter 1 to Search with Serial No.");
+			                	System.out.println("Enter 2 to Search with Book Name(Full Name).");
+			                	searchChoice = sc.nextInt();
+
+			                	switch(searchChoice)
+			                	{
+			                		case 1:
+			                			bookService.searchBookById(sc);
+			                			break;
+			                		case 2:
+			                			System.out.println("work under progress!");
+			                			//ob.searchBybookName();
+			                			break;
+			                	}
 			                	break;
 			                case 5://view books
+			                	bookService.viewAllBooks();
 			                	break;
 			                case 6://view books
-			                	
+			                	bookOrderService.viewAllOrders();
 			                	break;
 			                case 7:
 			                	System.out.println("Thank You Admin!");
@@ -204,11 +213,74 @@ public class libraryManagement implements CommandLineRunner {
 				 							bookService.viewAllBooks();
 				 							break;
 				 					case 2://Search Book
-				 							
+				 							System.out.println("Enter 1 to Search with Serial No.");
+				 							System.out.println("Enter 2 to Search with Book Name(Full Name).");
+				 							searchChoice = sc.nextInt();
+				 							switch(searchChoice)
+				 							{
+				 								case 1:
+				 									bookService.searchBookById(sc);
+				 									break;
+				 								case 2:
+				 									System.out.println("work under progress!");
+				 									break;
+				 							}	
 				 							break;
-				 					case 3:	break;
+				 					case 3://Order Book
+				 							BookOrder bookOrder = new BookOrder();
+				 							int bookIssueId = 0;
+				 							System.out.println("Enter the book id you want to issue");
+				 							bookIssueId=sc.nextInt();
+				 							Book searchBook=bookService.findBookById(bookIssueId);
+						          			if(searchBook != null) {
+						          				//bookOrder.setOrderid(1);
+						          				bookOrder.setId(searchBook);
+						          				bookOrder.setEmailid(user);
+						          				bookOrder.setOrderDate(new Date());
+						          				if(bookOrderService.placeOrder(bookOrder)!= null) {
+						          					searchBook.setQuantity(searchBook.getQuantity()-1);
+						          					bookService.updateBook(searchBook);
+						          					System.out.println("Order placed successfully!");
+						          				}
+						          			}
+				 							break;
 				 					case 4:
-				 											break;
+				 							//return book
+				 							int orderId = 0;
+				 							String choice =null;
+				 							System.out.println("Enter the order id you want to return");
+				 							orderId=sc.nextInt();
+				 							BookOrder returnBookOrder = bookOrderService.searchOrder(orderId);
+				 							if(returnBookOrder!=null && !returnBookOrder.isBookReturned()) {
+				 							System.out.println("do you want to check details of the orders too?press Y/y see orders else presss any other key to continuing return of order");
+				 							choice= sc.next();
+				 							if(choice.equals("Y") || choice.equals("y")) {
+				 								System.out.println("your issue date " + returnBookOrder.getOrderDate() );
+				 								System.out.println("your return date " + returnBookOrder.getReturnDate() );
+				 								System.out.println("your fine" + returnBookOrder.getLateReturnFee() );
+				 								int bookId=bookOrderService.findBookIdByOrder(returnBookOrder);
+				 								Book returnBook = bookService.findBookById(bookId);
+				 								if(bookOrderService.returnBook(returnBookOrder)!= null) {
+				 									int qty=returnBook.getQuantity()+1;
+				 									returnBook.setQuantity(qty);
+				 									bookService.updateBook(returnBook);
+						          					System.out.println("Book returned successfully!");
+				 							}
+				 							else {
+					 								int bookId1=bookOrderService.findBookIdByOrder(returnBookOrder);
+					 								Book returnBook1 = bookService.findBookById(bookId1);
+					 								if(bookOrderService.returnBook(returnBookOrder)!= null) {
+					 									int qty=returnBook1.getQuantity()+1;
+					 									returnBook1.setQuantity(qty);
+					 									bookService.updateBook(returnBook1);
+							          					System.out.println("Book returned successfully!");
+							          				}
+				 								}
+				 							}
+				 							
+				 							}
+				 		
+				 							break;
 				 					case 5:   
 				 							//register student
 				 							String emailid;

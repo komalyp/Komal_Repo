@@ -3,7 +3,7 @@ package librarymanagement.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import librarymanagement.model.Book;
+
 import librarymanagement.model.BookOrder;
 
 public interface BookOrderRepository extends JpaRepository<BookOrder,Integer> {
