@@ -1,4 +1,4 @@
-package LMS.model;
+package lms.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,17 +12,25 @@ import javax.persistence.Table;
 public class Book {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private int id;
 
-	@Column
+	@Column(name = "name")
 	private String bookname;
 
-	@Column
+	@Column(name = "author")
 	private String author;
 
-	@Column
-	private int price;
+	@Column(name = "quantity")
+	private int quantity;
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
 
 	public int getId() {
 		return id;
@@ -48,11 +56,4 @@ public class Book {
 		this.author = author;
 	}
 
-	public int getPrice() {
-		return price;
-	}
-
-	public void setPrice(int price) {
-		this.price = price;
-	}
 }

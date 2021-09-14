@@ -1,14 +1,13 @@
-package LMS.repository;
-
+package lms.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
-//import org.springframework.stereotype.Repository;
+import lms.model.Book;
 
-import LMS.model.Book;
-
-//@Repository
-public interface Bookrepository extends JpaRepository<Book, Integer> {
+public interface BookRepository extends JpaRepository<Book, Integer> {
+	
+	@Query(value = "SELECT * FROM book where id=?", nativeQuery = true)
+	Book getBookById(int id);
 
 }
- 
